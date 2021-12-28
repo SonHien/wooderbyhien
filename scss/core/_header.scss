@@ -1,0 +1,259 @@
+header {
+  --heightHeader: 80px;
+  width: 100%;
+  height: var(--heightHeader);
+  position: fixed;
+  top: 0;
+  left: 0px; 
+  z-index: 200;
+  @include transition($t);
+  &.active{
+    background: $black-cl;
+    @include transition($t);
+  }
+  .container-fluid {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    img {
+      width: 180px;
+      height: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+  }
+  .menu {
+    height: 100%;
+    display: flex;
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%));
+    li {
+      height: 100%;
+      list-style: none;
+      a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        line-height: 22px;
+        color: $white-cl;
+        opacity: 0.5;
+        text-transform: uppercase;
+        font-family: pb;
+        //text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        margin: 0 30px;
+        @include transition($t);
+        &:after {
+          content: "";
+          width: 100%;
+          height: 2px;
+          background: $yellow-cl;
+          position: absolute;
+          left: 0;
+          bottom: 25px;
+          @include transform(scaleX(0));
+          @include transform-origin(left center);
+          @include transition($t cubic-bezier(0.93, 0.02, 0.48, 0.91));
+        }
+        &:hover { 
+          color: $yellow-cl;
+          opacity: 1;
+          @include transition($t);
+          &:after {
+            @include transform(scaleX(1));
+            @include transform-origin(right center);
+            @include transition($t cubic-bezier(0.93, 0.02, 0.48, 0.91));
+          }
+         
+        }
+        &.active {
+          color: $yellow-cl;
+          opacity: 1;
+          position: relative;
+          &:after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background: $yellow-cl;
+            position: absolute;
+            left: 0;
+            bottom: 25px;
+            @include transform(initial);
+            @include transform-origin(initial);
+            @include transition(initial cubic-bezier(initial));
+          }
+          &:hover {
+            @include transition(initial);
+            // color: $yellow-cl;
+            opacity: initial;
+            &:after {
+              @include transform(initial);
+              @include transform-origin(initial);
+              @include transition(initial cubic-bezier(initial));
+            }
+          }
+        }
+      }
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .lang {
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+      &__current {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        span {
+          font-size: $fz-text;
+          line-height: 22px;
+          color: #fff;
+          opacity: 0.5;
+          text-transform: uppercase;
+          font-family: pb;
+          text-decoration: none;
+          margin-right: 8px;
+        }
+        i {
+          display: block;
+          img {
+            width: 10px;
+          }
+        }
+      }
+      &__option {
+        background: #353535;
+        position: absolute;
+        right: 0;
+        top: var(--heightHeader);
+        z-index: 198;
+        @include visible(0);
+        @include transition($t);
+        a {
+          padding: 15px 20px;
+          display: block;
+          color: #fff;
+          text-transform: uppercase;
+          text-decoration: none;
+          @include transition($t);
+          &:first-child {
+            padding-top: 12px;
+          }
+          &:last-child {
+            padding-bottom: 12px;
+          }
+          &:hover {
+            color: $yellow-cl;
+            @include transition($t);
+          }
+        }
+      }
+      &:hover {
+        .lang__option {
+          @include visible(1);
+        }
+      }
+    }
+    .btnmenu {
+      display: none;
+      width: 40px;
+      height: 22px;
+      position: relative;
+      cursor: pointer;
+      margin-left: 20px;
+      z-index: 300;
+      span {
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: $yellow-cl;
+        position: absolute;
+        top: 50%;
+        @include transform(translateY(-50%));
+        @include transition($t);
+      }
+      &:before,
+      &:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: $yellow-cl;
+        position: absolute;
+        @include transform(rotate(0deg) translateY(0px));
+        @include transition($t);
+      }
+      &:after {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+  .headtop{
+    position: relative;
+    .headtop__progress{
+      width: 0;
+      height: 5px;
+      background-color: $yellow-cl;
+      position:absolute;
+      bottom: -3px;
+      left: 0;
+    }
+  }
+  @include sm {
+    .container-fluid {
+      .menu {
+        display: none;
+      }
+      .btnmenu {
+        display: block;
+      }
+    }
+  }
+
+  @include xs {
+    --heightHeader: 60px;
+    .nav {
+      width: 100vw;
+      height: 100vh;
+      background: $black-cl;
+      position: fixed;
+      top: 0;
+      left: 0;
+      @include transform(initial);
+      z-index: 200;
+      opacity: 1;
+      //visibility: hidden;
+      //pointer-events: none;
+      @include transition($t);
+      ul {
+        flex-direction: column;
+        @include mid();
+        li {
+          list-style: none;
+          margin: 0 auto;
+          a {
+            padding: 20px;
+            color: $white-cl;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .btnmenu {
+      display: block;
+    }
+  }
+}

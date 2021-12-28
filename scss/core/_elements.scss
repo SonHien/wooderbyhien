@@ -1,0 +1,98 @@
+img {
+  max-width: 100%;
+}
+.btnmain {
+  border: 1px solid $white-cl;
+  padding: 12px 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $white-cl;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  @include transition($t);
+  i {
+    display: block;
+    margin-left: 15px;
+    position: relative;
+    right: 0;
+    @include transition($t);
+  }
+  .icon-play {
+    width: 20px;
+    margin-right: 10px;
+  }
+  &:hover {
+    background: $yellow-cl;
+    @include transition($t);
+    i {
+      margin-left: 22px;
+      right: -10px;
+      @include transition($t);
+    }
+  }
+  @include xs {
+    padding: 8px 20px;
+  }
+}
+
+.btnmore {
+  display: inline-flex;
+  text-decoration: none;
+  color: #000000;
+  font-family: pb;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+  @include transition($t);
+  img {
+    margin-left: 10px;
+  }
+  &:before {
+    content: "";
+    width: 35px;
+    height: 2px;
+    background: $yellow-cl;
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+  }
+  img {
+    position: relative;
+    @include transform(translateX(0px));
+    @include transition($t);
+  }
+  &:hover {
+    img {
+      @include transform(translateX(10px));
+      @include transition($t);
+    }
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: $yellow-cl;
+  //border-radius: 100px;
+  cursor: pointer;
+  display: none;
+  z-index: 300;
+  opacity: 60%;
+  @include transition($t);
+  img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+  }
+  &:hover{
+    opacity: 100%;
+    @include transition($t);
+  }
+}
