@@ -199,6 +199,54 @@ header {
         position: absolute;
         bottom: 0;
       }
+      &.clicked{
+        &::before{
+            @include transform(rotate(45deg) translate(6px,8px));
+            @include transition($t);
+        }
+        span{
+            opacity: 0;
+            @include transition($t);
+        }
+        &::after{
+            @include transform(rotate(-45deg) translate(6px,-8px));
+            @include transition($t);
+        }
+      }
+    }
+  }
+  .nav {
+    width: 100vw;
+    height: 100vh;
+    background: $black-cl;
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include transform(initial);
+    z-index: 200;
+    opacity: 0;
+    //visibility: hidden;
+    pointer-events: none;
+    @include transition(opacity 0.5s);
+    ul {
+      flex-direction: column;
+      @include mid();
+      li {
+        list-style: none;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px 0;
+        a {
+          color: $white-cl;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
+    }
+    &.clicked{
+        opacity: 1;
+        pointer-events: auto;
+        @include transition(opacity 0.5s);
     }
   }
   .headtop{
@@ -225,33 +273,7 @@ header {
 
   @include xs {
     --heightHeader: 60px;
-    .nav {
-      width: 100vw;
-      height: 100vh;
-      background: $black-cl;
-      position: fixed;
-      top: 0;
-      left: 0;
-      @include transform(initial);
-      z-index: 200;
-      opacity: 1;
-      //visibility: hidden;
-      //pointer-events: none;
-      @include transition($t);
-      ul {
-        flex-direction: column;
-        @include mid();
-        li {
-          list-style: none;
-          margin: 0 auto;
-          a {
-            padding: 20px;
-            color: $white-cl;
-            text-align: center;
-          }
-        }
-      }
-    }
+    
     .btnmenu {
       display: block;
     }

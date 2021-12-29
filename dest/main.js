@@ -43,6 +43,15 @@ document.addEventListener('click',function(){
     langOpt.classList.remove('active');
 })
 
+
+//menu mobile
+let nav = $('.nav');
+let btnmenu = $('header .btnmenu');
+btnmenu.click(function(){
+    nav.toggleClass("clicked");
+    $(this).toggleClass("clicked");
+});
+
 //Slider
 let listItemSlider = document.querySelectorAll('.slider__items');
 let currentSlider = 0;
